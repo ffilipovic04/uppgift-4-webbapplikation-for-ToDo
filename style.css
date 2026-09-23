@@ -1,0 +1,20 @@
+/* G-KRAV: "markera den som klar (sätta class så att den stylas annorlunda)" */
+/* När JavaScript lägger till klassen 'completed', blir texten genomstruken */
+.completed span {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* VG-KRAV: "Klicka på en liten papperskorg på varje rad..." */
+/* Tar bort standardknappens fula gråa ruta så att bara emojin 🗑️ syns rent */
+.delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* G-KRAV: "Om man klickar på knappen när fältet är tomt ska man få ett meddelande" */
+/* Gör felmeddelandet rött så att användaren tydligt ser det */
+.error-text {
+    color: red;
+}

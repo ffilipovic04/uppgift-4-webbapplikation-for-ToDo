@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Min ToDo-lista</title>
+    <link rel='stylesheet' href='style.css'>
+
+</head>
+<body>
+
+    <div class="todo-container">
+        <h1>Min ToDo-lista</h1>
+
+        <div class="input-section">
+            <input type="text" id="todo-input" placeholder="Skriv en uppgift">
+            <button id="add-btn">Lägg till</button>
+        </div>
+
+        <div id="error-message" class="error-text"></div>
+
+        <ul id="todo-list"></ul>
+
+        <div class="counter-section">
+            Antal klara uppgifter: <span id="completed-count">0</span>
+        </div>
+    </div>    
+    <script src="script.js"></script>
+
+</body>
+</html>
