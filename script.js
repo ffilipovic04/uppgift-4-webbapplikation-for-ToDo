@@ -1,7 +1,7 @@
 //Skapar en array för samtliga ToDO-objekt
 let todos = []
 
-//Hämtar och sparar referenser till DOM-element för att kunna hantera att göra-listans logik och uppdatera gränssnittet 
+//Hämtar och sparar variabler till DOM-element för att kunna hantera att göra-listans logik och uppdatera gränssnittet 
 const todoInput = document.getElementById('todo-input');
 const addBtn = document.getElementById('add-btn');
 const todoList = document.getElementById('todo-list');
@@ -28,7 +28,7 @@ function renderTodos() {
         textSpan.textContent = todo.text;
         li.appendChild(textSpan);
 
-        //Papperskorg som raderar efter varje klick på knappen/symbolen
+        //Papperskorg som raderar efter varje klick på symbolen
         const deleteBtn = document.createElement('button');
         deleteBtn.innerHTML = '🗑️';
         deleteBtn.classList.add('delete-btn');
@@ -86,6 +86,13 @@ function addTodo() {
     renderTodos(); //Nya listan ritas ut
 }
 
-//Klicka på en knapp för att lägga till uppgiften
+//Alternativ 1: Använder klickar med musen på "Lägg till" knappen
 addBtn.addEventListener('click',addTodo);
 
+// Alternativ 2: Använder trycker på "Enter-tangenten" på tangentbordet
+todoInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        addTodo();
+    }
+
+});
