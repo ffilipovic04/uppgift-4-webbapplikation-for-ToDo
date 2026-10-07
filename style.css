@@ -1,10 +1,110 @@
+/*Bakgrund med rosa gradient */
+body {
+    background: linear-gradient(180deg, #ffb3b3 0%, #ff6b7b 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    margin-top: 10px;
+}
+
+/*Sidladdningsanimation (Flyga ner och göra en mjuk studs)*/
+.todo-container {
+    background: white;
+    padding: 30px 30px 15px 30px;
+    text-align: center;
+    width: 450px;
+    box-shadow: 0 -8px 15px rgba(255,255,255, 0.6), 0 10px 25px rgba(0,0,0, 0.15);
+    animation: dropBounce 0.8s ease-out forwards;
+}
+
+/* Animationen som styr hur rutan flyger ner och studsar vid sidladdning */
+@keyframes dropBounce {
+    0% { 
+        transform: translateY(-200px);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translateY(15px); 
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Tonar in texten */
+.fade-in-item {
+    opacity: 0;
+    animation: fadeInContent 0.5s ease-out forwards;
+}
+.item-1 {
+    animation-delay: 0.6s;
+}
+.item-2 {
+    animation-delay: 0.8s;
+}
+.item-3 {
+    animation-delay: 1.0s;
+}
+
+/* Animation som tonar in textinnehållet (rubrik, räknare, input) mjukt */
+@keyframes fadeInContent {
+    to {
+        opacity: 1;
+    }
+}
+
+h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 40px;
+    margin: 0 0 5px 0;
+}
+.counter-section {
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Nya punkter som läggs till i listan, tonas in och därefter glider upppåt */
+li {
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Animation som gör att nya ToDo-punkter tonas in och glider uppåt när de skapas */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* När JavaScript lägger till klassen 'completed', blir texten genomstruken */
+li span {
+    transition: color 0.3s;
+}
 .completed span {
     text-decoration: line-through;
     color: gray;
 }
 
-/* VG-KRAV "Klicka på en liten papperskorg på varje rad..." */
+/* Papperskorg på varje punkt som tas bord */
 .delete-btn {
     background: transparent;
     border: none;
@@ -14,4 +114,32 @@
 /* Gör felmeddelandet rött så att användaren tydligt ser det */
 .error-text {
     color: red;
+    font-style: italic;
+    min-height: 20px;
+    margin-top: 8px;
+    font-size: 12px
+}
+
+.blink-red {
+    animation: flash 0.15s ease-in-out 2;
+}
+
+/* Animation som får det röda felmeddelandet att blinka till när man försöker lägga till en tom punkt */
+@keyframes flash {
+    0%, 100%{
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+}
+
+input[type="text"], button {
+    height:26px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+button {
+    padding: 0 6px;
 }
