@@ -34,19 +34,28 @@ function renderTodos() {
         deleteBtn.classList.add('delete-btn');
         li.appendChild(deleteBtn);
 
-        //
+        //Lyssnar efter klick på själva listraden för att markera en uppgift som klar eller oklar
         li.addEventListener('click', (event) => {
             //Kontrollerar så man inte klickat på papperskorgen av misstag
             if (event.target !== deleteBtn) {
+                // Vänder på statusen (om completed var false blir det true, och tvärtom)
                 todo.completed = !todo.completed;
-                renderTodos(); //Ritar om listan för att synka HTML med arrayen
+                if (todo.completed) {
+                    li.classList.add('completed');
+                }
+                else {
+                    li.classList.remove('completed');
+                }
+                // Uppdaterar direkt siffran i räknaren högst upp så att antalet klara uppgifter stämmer
+                updateCounter();
             }
         });
 
         //När man klickar på papperskorgen så raderas just detta objekt och arrayen filtreras
         deleteBtn.addEventListener('click', () => {
             todos = todos.filter(item => item.id !== todo.id); //Tar bort från arrayen
-            renderTodos(); //Ritar om för att synka HTML med arrayen
+            li.remove(); // Tar bort det specifika listelementet direkt från skärmen (HTML)
+            updateCounter(); // Uppdaterar siffran i räknaren så att antalet klara uppgifter stämmer
         });
 
         todoList.appendChild(li); //Lägger till färdiga listelementet i <ul> i HTML
@@ -67,12 +76,18 @@ function addTodo() {
 
     //Om man klickar på knappen när fältet är tomt ska man få meddelandet som står nedan
     if (todoText === '') {
-        errorMessage.textContent = 'Du måste skriva något!';
+        errorMessage.textContent = 'Input must not be empty';
+        
+        errorMessage.classList.remove('blink-red');
+        void errorMessage.offsetWidth
+        errorMessage.classList.add('blink-red');
+        
         return; 
-    }
+}
 
-    //Rensar felmeddelandet om använder skrev något
+    //Rensar felmeddelandet och animationsklassen om använder skrev något
     errorMessage.textContent = '';
+    errorMessage.classList.remove('blink-red');
 
     //Får unikt ID med Date.now som behövs för att veta exakt vilket objekt som ska tas bort
     const newTodo = {
