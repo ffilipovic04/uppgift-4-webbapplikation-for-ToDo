@@ -98,7 +98,37 @@ function addTodo() {
 
     todos.push(newTodo); //Lägger till i arrayen
     todoInput.value = ''; //Input-fältet töms efter man klickat på knappen
-    renderTodos(); //Nya listan ritas ut
+    const li = document.createElement('li'); // 1. Skapa ett nytt listelement direkt för det nya ordet
+    const textSpan = document.createElement('span');
+    textSpan.textContent = newTodo.text;
+    li.appendChild(textSpan);
+
+    const deleteBtn = document.createElement('span');
+    deleteBtn.innerHTML = '🗑️';
+    deleteBtn.classList.add('delete-btn');
+    li.appendChild(deleteBtn);
+
+    li.addEventListener('click', (event) => { //Kontrollerar så man inte klickat på papperskorgen av misstag
+        if (event.target !== deleteBtn) {
+            newTodo.completed = !newTodo.completed;
+            if (newTodo.completed) {
+                li.classList.add('completed');
+            } else {
+                li.classList.remove('completed');
+            }
+            updateCounter();
+        }
+    });
+
+    deleteBtn.addEventListener('click', () => {
+        todos = todos.filter(item => item.id !== newTodo.id);
+        li.remove();
+        updateCounter();
+
+    });
+
+    todoList.appendChild(li);
+    updateCounter();
 }
 
 //Alternativ 1: Använder klickar med musen på "Lägg till" knappen
