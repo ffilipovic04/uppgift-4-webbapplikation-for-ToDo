@@ -27,7 +27,7 @@ body {
     }
 
     60% {
-        transform: translateY(15px); 
+        transform: translateY(45px); 
         opacity: 1;
     }
 
@@ -111,6 +111,12 @@ li span {
     cursor: pointer;
 }
 
+/* Skyddar papperskorgen mot genomstrykningen */
+.completed .delete-btn {
+text-decoration: none;
+display: inline-block;
+}
+
 /* Gör felmeddelandet rött så att användaren tydligt ser det */
 .error-text {
     color: red;
@@ -121,7 +127,7 @@ li span {
 }
 
 .blink-red {
-    animation: flash 0.15s ease-in-out 2;
+    animation: flash 0.45s ease-in-out 2;
 }
 
 /* Animation som får det röda felmeddelandet att blinka till när man försöker lägga till en tom punkt */
